@@ -1,0 +1,18 @@
+name: Limrun
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npx -y lim set-api-key ${{ secrets.LIMRUN_API_KEY }}
+      - name: Run Limrun in project directory
+        working-directory: ./اسم_مجلد_مشروعك
+        run: npx -y lim run
